@@ -64,7 +64,7 @@ type ReservedFundsRepository struct {
 }
 
 func (r *ReservedFundsRepository) Create(f *model.ReservedFund) error {
-	userRepository := r.store.userRepository
+	userRepository := r.store.User()
 	user := &model.User{ID: f.ID, Balance: -f.Price}
 	err := userRepository.ReplenishOrCreate(user)
 	if err != nil {
